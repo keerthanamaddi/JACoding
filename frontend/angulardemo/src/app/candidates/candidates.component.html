@@ -1,0 +1,17 @@
+<h5 class="justify-content-lg-center">Candidates</h5>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Job ID</th>
+            <th>Name</th>
+            <th>Skills</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of CandidatesList">
+            <td>{{dataItem.candidateId}}</td>
+            <td>{{dataItem.name}}</td>
+            <td>{{dataItem.skillTags}}</td>
+        </tr>
+    </tbody>
+</table>

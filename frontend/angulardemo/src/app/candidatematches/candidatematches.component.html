@@ -1,0 +1,33 @@
+<h5 class="justify-content-lg-center">Matching Candidates</h5>
+
+ <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Job</th>
+            <th>Top 10 Matching Candidates</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of MatchingCandidates">
+            <td>{{dataItem.job.name}}</td>
+
+            <td>
+                
+                <table class="table table-borderless"> 
+                    <thead>
+                        <tr>
+                            <th>Candidate Name</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of dataItem.matchingCandidates">
+                            <td>{{data.name}}</td>
+                            <td>{{data.score}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

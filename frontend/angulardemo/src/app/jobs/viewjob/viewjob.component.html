@@ -1,0 +1,17 @@
+
+
+<h5 class="d-flex justify-content-center">{{job[0].name}}</h5>
+<table class="table table-striped"> 
+    <thead>
+        <tr>
+            <th>Candidate Name</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of MatchingCandidates">
+            <td>{{data.name}}</td>
+            <td>{{data.score}}</td>
+        </tr>
+    </tbody>
+</table>
