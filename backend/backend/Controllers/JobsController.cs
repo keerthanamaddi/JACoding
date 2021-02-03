@@ -45,9 +45,10 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(Model.Jobs job)
+        public JsonResult Post(Model.Job job)
         {
-            string query = @"insert into dbo.Jobs values ('" + job.jobname + "','" + job.skills + @"')";
+
+            string query = @"insert into dbo.Jobs values ('" + job.jobname + "','" + job.skills + "','" + job.company + @"')";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("JobadderAppCon");
             SqlDataReader myReader;

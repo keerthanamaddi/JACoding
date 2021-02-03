@@ -45,7 +45,7 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(Model.Candidates candidate)
+        public JsonResult Post(Model.Candidate candidate)
         {
             string query = @"insert into dbo.candidates values ('" + candidate.candidatename + "','" + candidate.skills + @"')";
             DataTable table = new DataTable();

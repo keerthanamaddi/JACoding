@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "\\\\Mac\\Home\\Documents\\JobadderChallenge\\backend\\backend\\backend.csproj": {}
+    "C:\\Users\\KeerthanaMaddi\\Documents\\JACoding\\backend\\backend\\backend.csproj": {}
   },
   "projects": {
-    "\\\\Mac\\Home\\Documents\\JobadderChallenge\\backend\\backend\\backend.csproj": {
+    "C:\\Users\\KeerthanaMaddi\\Documents\\JACoding\\backend\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Documents\\JobadderChallenge\\backend\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\KeerthanaMaddi\\Documents\\JACoding\\backend\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "\\\\Mac\\Home\\Documents\\JobadderChallenge\\backend\\backend\\backend.csproj",
+        "projectPath": "C:\\Users\\KeerthanaMaddi\\Documents\\JACoding\\backend\\backend\\backend.csproj",
         "packagesPath": "C:\\Users\\KeerthanaMaddi\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Documents\\JobadderChallenge\\backend\\backend\\obj\\",
+        "outputPath": "C:\\Users\\KeerthanaMaddi\\Documents\\JACoding\\backend\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\KeerthanaMaddi\\AppData\\Roaming\\NuGet\\NuGet.Config",
