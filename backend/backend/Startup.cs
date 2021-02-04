@@ -50,12 +50,17 @@ namespace backend
 				.AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 				
 			services.AddControllers();
+
+			services.AddHttpClient<MatchingCandidatesData>(configureClient =>
+			{
+				configureClient.BaseAddress = new Uri("http://private-76432-jobadder1.apiary-mock.com");
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			//app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+			app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 			if (env.IsDevelopment())
 			{
@@ -66,9 +71,9 @@ namespace backend
 
 			app.UseRouting();
 
-			//app.UseAuthorization();
+			app.UseAuthorization();
 
-		app.UseEndpoints(endpoints =>
+			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
 			});

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SharedService} from 'src/app/shared.service';
+import { SharedService } from 'src/app/shared.service';
+import { job } from 'src/models/job';
 
 @Component({
   selector: 'app-jobs',
@@ -8,31 +9,31 @@ import {SharedService} from 'src/app/shared.service';
 })
 export class JobsComponent implements OnInit {
 
-  JobsList:any=[];
-  ActivateViewJob:boolean=false;
-  job:any;
-
-  constructor(private service:SharedService) { }
+  JobsList: job[];
+  ActivateViewJob: boolean = false;
+  currentJob: job;
+  constructor(private service: SharedService) { }
 
   ngOnInit(): void {
     this.refreshJobsList();
   }
 
-  refreshJobsList(){
-    this.service.getJobsList().subscribe(data=>{
-      this.JobsList=data;
+  refreshJobsList() {
+    this.service.getJobsList().subscribe(data => {
+      this.JobsList = data;
     });
   }
 
 
-  addClick(job:any){
+  addClick(job: any) {
     console.log("add clicked" + job)
-    this.job=this.JobsList.filter((element:any) => element.name.includes(job));
-    console.log("add clicked" + this.job[0].skills)
-    this.ActivateViewJob=true;
+    let jobMatches = (this.JobsList.filter((element: job) => element.name.includes(job)));
+    this.currentJob = jobMatches[0];
+    console.log("add clicked" + this.currentJob.skills)
+    this.ActivateViewJob = true;
   }
 
-  closeClick(){
-    this.ActivateViewJob=false;
+  closeClick() {
+    this.ActivateViewJob = false;
   }
 }

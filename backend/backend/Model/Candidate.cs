@@ -8,12 +8,12 @@ namespace backend.Model
 {
     public class Candidate
     {
-        public int id { get; set; }
+        public int candidateId { get; set; }
 
         [Required]
-        public string candidatename { get; set; }
+        public string name { get; set; }
 
         [Required]
-        public string skills { get; set; }
+        public string skillTags { get; set; }
     }
 }

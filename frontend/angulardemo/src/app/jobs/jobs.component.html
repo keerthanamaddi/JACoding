@@ -1,46 +1,43 @@
 <h5 class="justify-content-lg-center">Jobs</h5>
 
 <!-- Modal -->
-<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Top 10 Matching Candidates for Job</h5>
-          <button type ="button" class="close" 
-          data-dismiss="modal" aria-label="Close"
-          (click)="closeClick()" >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <app-viewjob [job]="job" *ngIf="ActivateViewJob">
-            </app-viewjob>
-        </div>
+<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Top 10 Matching Candidates for Job</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-viewjob [job]="currentJob" *ngIf="ActivateViewJob">
+        </app-viewjob>
       </div>
     </div>
   </div>
+</div>
 
 
 
 <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Company</th>
-            <th>Skills</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let dataItem of JobsList" class="align-top align-text-top">
-            <td class="p-6" >{{dataItem.jobId}}</td>
-            <td ><button type="button" class="btn btn-link t-6" 
-                data-toggle="modal" data-target="#testModal"
-                (click)="addClick(dataItem.name)"
-                data-backdrop="static" data-keyboard="false">{{dataItem.name}}
-                </button></td>
-            <td>{{dataItem.company}}</td>
-            <td>{{dataItem.skills}}</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Company</th>
+      <th>Skills</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dataItem of JobsList" class="align-top align-text-top">
+      <td class="p-6">{{dataItem.jobId}}</td>
+      <td><button type="button" class="btn btn-link t-6" data-toggle="modal" data-target="#testModal"
+          (click)="addClick(dataItem.name)" data-backdrop="static" data-keyboard="false">{{dataItem.name}}
+        </button></td>
+      <td>{{dataItem.company}}</td>
+      <td>{{dataItem.skills}}</td>
+    </tr>
+  </tbody>
 </table>

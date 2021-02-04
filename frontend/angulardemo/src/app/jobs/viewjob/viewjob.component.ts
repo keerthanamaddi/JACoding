@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {SharedService} from 'src/app/shared.service';
+import { SharedService } from 'src/app/shared.service';
+import { job } from 'src/models/job';
 
 @Component({
   selector: 'app-viewjob',
@@ -8,24 +9,24 @@ import {SharedService} from 'src/app/shared.service';
 })
 export class ViewjobComponent implements OnInit {
 
-  @Input() job:any;
-  CandidatesList:any=[];
-  MatchingCandidates:any=[];
-  jobName:any;
-  constructor(private service:SharedService) { 
+  @Input() job: job;
+  CandidatesList: any = [];
+  MatchingCandidates: any = [];
+  jobName: any;
+  constructor(private service: SharedService) {
   }
 
   ngOnInit(): void {
     this.loadJobDetails();
   }
 
-  loadJobDetails(){
-    
-    this.service.getCandidatesList().subscribe(data=>{
-      this.CandidatesList=data;
-      this.MatchingCandidates = this.service.getCandidateScores(this.job[0],this.CandidatesList).matchingCandidates;
+  loadJobDetails() {
+
+    this.service.getCandidatesList().subscribe(data => {
+      this.CandidatesList = data;
+      this.MatchingCandidates = this.service.getCandidateScores(this.job, this.CandidatesList).matchingCandidates;
       console.log(this.MatchingCandidates[0].name + this.MatchingCandidates[0].score)
-    }) 
+    })
   }
 
 }

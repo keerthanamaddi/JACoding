@@ -10,13 +10,15 @@ import{SharedService} from './shared.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import { ViewjobComponent } from './jobs/viewjob/viewjob.component';
+import { NewcandidatematchesComponent } from './newcandidatematches/newcandidatematches.component';
 @NgModule({
   declarations: [
     AppComponent,
     JobsComponent,
     CandidatesComponent,
     CandidatematchesComponent,
-    ViewjobComponent
+    ViewjobComponent,
+    NewcandidatematchesComponent
   ],
   imports: [
     BrowserModule,

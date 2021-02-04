@@ -8,10 +8,10 @@ namespace backend.Model
 {
     public class Job
     {
-        public int id { get; set; }
+        public int jobId { get; set; }
 
         [Required]
-        public string jobname { get; set; }
+        public string name { get; set; }
 
         [Required]
         public string skills { get; set; }
