@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using backend.Service;
 
 namespace backend.Controllers
 {
@@ -14,58 +15,34 @@ namespace backend.Controllers
     [ApiController]
     public class JobsController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
-
-        public JobsController(IConfiguration configuration)
+        private IJob _jobData;
+        
+        public JobsController(IJob data)
         {
-            _configuration = configuration;
+            _jobData = data;
         }
 
         [HttpGet]
-
-        public JsonResult Get()
+        public IActionResult Get()
         {
-            string query = @"select id as jobId,jobname as name,company,skills from dbo.Jobs";
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("JobadderAppCon");
-            SqlDataReader myReader;
-            using(SqlConnection myCon = new SqlConnection(sqlDataSource))
-            {
-                myCon.Open();
-                using(SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader);
-
-                    myReader.Close();
-                    myCon.Close();
-                }
-            }
-            return new JsonResult(table);
+            return Ok(_jobData.GetAllJobs());
         }
 
-        [HttpPost]
-        public JsonResult Post(Model.Job job)
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult Get(int id)
         {
+            var job = _jobData.GetJob(id);
 
-            string query = @"insert into dbo.Jobs values ('" + job.jobname + "','" + job.skills + "','" + job.company + @"')";
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("JobadderAppCon");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            if (job != null)
             {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader);
-
-                    myReader.Close();
-                    myCon.Close();
-                }
+                return Ok(job);
             }
-            return new JsonResult(table);
+
+            return NotFound($"Job with id {id} not found");
         }
+
+
 
     }
 }
