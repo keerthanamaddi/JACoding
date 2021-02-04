@@ -1,3 +1,5 @@
+
+
 # Logs
 logs
 *.log
@@ -102,3 +104,4 @@ dist
 
 # TernJS port file
 .tern-port
+backend/backend/bin/Debug/netcoreapp3.1/Humanizer.dll
