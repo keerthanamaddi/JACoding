@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 
 namespace backend.Service.Data
 {
+    //service layer reads data from the two JobAdder public APIs and computes matching candidates
     public class MatchingCandidatesData
     {
         private HttpClient _httpClient;

@@ -13,24 +13,25 @@ import { SharedService } from '../shared.service';
 
 export class CandidatematchesComponent implements OnInit {
 
-  CandidatesList:any=[];
-  JobsList:any=[];
-  MatchingCandidates:any=[];
-  
-  constructor(private service:SharedService) { }
+  CandidatesList: any = [];
+  JobsList: any = [];
+  MatchingCandidates: any = [];
+
+  constructor(private service: SharedService) { }
 
   ngOnInit(): void {
     this.getMatchingCandidates();
   }
 
-  getMatchingCandidates(){
-    this.service.getCandidatesList().subscribe(data=>{
-      this.CandidatesList=data;
-      
-      this.service.getJobsList().subscribe(data=>{
-        this.JobsList=data;
-        this.JobsList.forEach((element:any) => {
-          this.MatchingCandidates.push(this.service.getCandidateScores(element,this.CandidatesList))
+  //computes matching candidates by getting responses from jobs & candidates APIs  and renders data
+  getMatchingCandidates() {
+    this.service.getCandidatesList().subscribe(data => {
+      this.CandidatesList = data;
+
+      this.service.getJobsList().subscribe(data => {
+        this.JobsList = data;
+        this.JobsList.forEach((element: any) => {
+          this.MatchingCandidates.push(this.service.getCandidateScores(element, this.CandidatesList))
         });
       });
     })

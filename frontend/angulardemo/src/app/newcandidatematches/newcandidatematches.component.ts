@@ -17,6 +17,7 @@ export class NewcandidatematchesComponent implements OnInit {
     this.refreshList();
   }
 
+  //renders matching candidates api response directly
   refreshList() {
     this.service.getMatchingCandidates().subscribe(data => {
       this.MatchingCandidates = data;

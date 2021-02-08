@@ -8,7 +8,7 @@ namespace backend.Model.Context
 {
     public class CandidateContext : DbContext
     {
-
+        //Entity Framework
         public CandidateContext(DbContextOptions<CandidateContext> options) : base(options)
         {
 

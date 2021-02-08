@@ -28,6 +28,7 @@ namespace backend.Controllers
             return Ok(_jobData.GetAllJobs());
         }
 
+        //get job by ID
         [HttpGet]
         [Route("{id}")]
         public IActionResult Get(int id)
@@ -36,9 +37,11 @@ namespace backend.Controllers
 
             if (job != null)
             {
+                //200 response
                 return Ok(job);
             }
 
+            //return 404
             return NotFound($"Job with id {id} not found");
         }
 

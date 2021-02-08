@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Model.Context
 {
+    //entity framework db context
     public class JobContext : DbContext
     {
        
