@@ -10,6 +10,7 @@ using System.Data;
 using Api.Service;
 using Api.Model;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace Api.Controllers
 {
@@ -20,11 +21,13 @@ namespace Api.Controllers
     {
         private IJob _jobService;
         private readonly ICustomAuthenticationManager _customAuthenticationManager;
+        private readonly ILogger<JobsController> _logger;
 
-        public JobsController(IJob data, ICustomAuthenticationManager customAuthenticationManager)
+        public JobsController(IJob data, ICustomAuthenticationManager customAuthenticationManager, ILogger<JobsController> logger)
         {
             _jobService = data;
             _customAuthenticationManager = customAuthenticationManager;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -40,6 +43,7 @@ namespace Api.Controllers
         {
             if(jobId <= 0)
             {
+                _logger.LogInformation("Job Id cannot be less than or equal to zero");
                 return BadRequest("Job Id must be > 0");
             }
 

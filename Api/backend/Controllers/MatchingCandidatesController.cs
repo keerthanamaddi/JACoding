@@ -30,14 +30,23 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<List<MatchingCandidate>> Get()
         {
-            List<MatchingCandidate> cacheEntry = _memoryCacheService.GetCacheValue(CacheKeys.MatchingCandidates);
-            if (cacheEntry == null)
+            try
             {
-                cacheEntry = await _matchingCandidatesData.GetMatchingCandidates() as List<MatchingCandidate>;
+                List<MatchingCandidate> cacheEntry = _memoryCacheService.GetCacheValue(CacheKeys.MatchingCandidates);
+                if (cacheEntry == null)
+                {
+                    cacheEntry = await _matchingCandidatesData.GetMatchingCandidates() as List<MatchingCandidate>;
 
-                _memoryCacheService.Set(CacheKeys.MatchingCandidates, cacheEntry);
+                    _memoryCacheService.Set(CacheKeys.MatchingCandidates, cacheEntry);
+                }
+
+                return cacheEntry;
+            }catch(Exception e)
+            {
+                _logger.LogInformation("Error in retrieving the matching candidates list");
             }
-            return cacheEntry;
+
+            return null;
             //return await _matchingCandidatesData.GetMatchingCandidates();
         }
     }
