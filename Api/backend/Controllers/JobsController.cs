@@ -9,18 +9,22 @@ using System.Data.SqlClient;
 using System.Data;
 using Api.Service;
 using Api.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Controllers
 {
+    [Authorize]
     [Route("jobs")]
     [ApiController]
     public class JobsController : ControllerBase
     {
         private IJob _jobService;
-        
-        public JobsController(IJob data)
+        private readonly ICustomAuthenticationManager _customAuthenticationManager;
+
+        public JobsController(IJob data, ICustomAuthenticationManager customAuthenticationManager)
         {
             _jobService = data;
+            _customAuthenticationManager = customAuthenticationManager;
         }
 
         [HttpGet]
@@ -57,6 +61,18 @@ namespace Api.Controllers
 
             //return 404
             return NotFound($"Job with id {jobId} not found");
+        }
+
+        [AllowAnonymous]
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate([FromBody] User user)
+        {
+            var token = _customAuthenticationManager.Authenticate(user.UserName, user.Password);
+
+            if (token == null)
+                return Unauthorized();
+
+            return Ok(token);
         }
 
 

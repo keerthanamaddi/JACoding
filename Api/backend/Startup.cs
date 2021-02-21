@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Api.Model;
 using Api.Model.Context;
@@ -32,7 +33,6 @@ namespace Api
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			
 			services.AddDbContextPool<JobAdderDemoContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("JobadderAppCon")));
 			services.AddSingleton<MemoryCacheService, MemoryCacheService>();
@@ -43,12 +43,13 @@ namespace Api
 				c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 			});
 
-			services.AddControllersWithViews()
-				.AddNewtonsoftJson(options =>
-				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
-				.AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
-				
+			services.AddControllersWithViews();
 			services.AddControllers();
+
+			services.AddAuthentication("Basic")
+				.AddScheme<BasicAuthenticationOptions, CustomAuthenticationHandler>("Basic", null);
+
+			services.AddSingleton<ICustomAuthenticationManager, CustomAuthenticationManagerService>();
 
 			services.AddHttpClient<MatchingCandidatesService>(configureClient =>
 			{
@@ -70,6 +71,7 @@ namespace Api
 
 			app.UseRouting();
 
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
