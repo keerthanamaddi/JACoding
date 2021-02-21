@@ -107,3 +107,6 @@ dist
 .tern-port
 backend/backend/bin/Debug/netcoreapp3.1/Humanizer.dll
 backend/.vs/backend/v16/.suo
+
+Api/.vs/
+*.csproj.user
